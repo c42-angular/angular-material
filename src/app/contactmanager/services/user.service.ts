@@ -11,7 +11,7 @@ export class UserService {
   private _users: BehaviorSubject<User[]>;
   private dataStore: {
     users: User[]
-  }
+  };
 
   constructor(private http: HttpClient) {
     this.dataStore = {
@@ -33,6 +33,6 @@ export class UserService {
         this.dataStore.users = data;
         this._users.next(Object.assign({}, this.dataStore).users);
       }
-        , err => console.error("Failed to fetch users"));
+        , err => console.error('Failed to fetch users'));
   }
 }
