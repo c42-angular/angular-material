@@ -16,7 +16,7 @@ import { UserService } from './services/user.service';
 // notice child routes
 // see in ContactmanagerAppComponent - that has a side-nav that in turn has a router-outlet within it
 const routes: Routes = [
-  { path: '', component: ContactmanagerAppComponent, 
+  { path: '', component: ContactmanagerAppComponent,
     children: [
       { path: '', component: MainContentComponent }
     ] },
@@ -27,11 +27,11 @@ const routes: Routes = [
   declarations: [ContactmanagerAppComponent, ToolbarComponent, MainContentComponent, SideNavComponent],
   imports: [
     CommonModule,
-    FormsModule, 
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
-    RouterModule.forChild(routes)    
+    RouterModule.forChild(routes)
   ],
   providers: [
     UserService
