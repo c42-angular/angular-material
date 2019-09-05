@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+const SMALL_WIDTH_BREAKPOINT = 720;
+
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
+  private mediaMatcher: MediaQueryList = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
+  
   constructor() { }
 
   ngOnInit() {
   }
 
+  isScreenSmall(): boolean {
+    return this.mediaMatcher.matches;
+  }
 }

@@ -1,19 +1,20 @@
-.sidenav-container {
+.app-sidenav-container {
     display: flex;
-    position: fixed;
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-    min-height: 100%;
+    position: fixed;    // makes the element always fixed w.r.t the viewport 
+                        // so remains where it is even when scrolled
+
+    width: 100%;        // width & height relative to its container, which
+    min-width: 100%;    // in this case is the body
+    height: 100%;       // this element would fill up the page only if its container
+    min-height: 100%;   // i.e body fills the page. So we set its margin:0 in styles.scss
 }
 
-.sidenav {
+.app-sidenav {
     width: 240px;
 }
 
-.sidenav-content {
+.app-sidenav-content {
     display: flex;
     height: 100%;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 }
