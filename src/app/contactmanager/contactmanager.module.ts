@@ -18,7 +18,8 @@ import { UserService } from './services/user.service';
 const routes: Routes = [
   { path: '', component: ContactmanagerAppComponent,
     children: [
-      { path: '', component: MainContentComponent }
+      { path: '', component: MainContentComponent },
+      { path: ':id', component: MainContentComponent }
     ] },
   { path: '**', redirectTo: ''}
 ];
