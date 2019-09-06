@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { MatSidenav } from '@angular/material';
 
 import { UserService } from './../../services/user.service';
-import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
@@ -13,15 +16,23 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 })
 export class SideNavComponent implements OnInit {
 
+  @ViewChild(MatSidenav, {static: false}) 
+  sidenav: MatSidenav;
+
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
   users: Observable<User[]>;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.users = this.userService.users;
     this.userService.loadAll();
 
+    this.router.events.subscribe(() => 
+      {
+        if (this.isScreenSmall()) this.sidenav.close();
+      }
+    );
     this.users.subscribe(data => console.log(data));
   }
 
