@@ -16,21 +16,25 @@ export class MainContentComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    const userId = this.route.snapshot.params['id'];
-    console.log(`The user id passed is: ${userId}`);
-    this.getUser(userId);
-
     this.route.params.subscribe(
-      nextId => {
-        const userId = this.route.snapshot.params['id'];
+      params => {
+        let userId = params['id'];
+        
         console.log(`The next user id passed is: ${userId}`);
-        this.getUser(userId);
+        this.userService.users.subscribe(allUsers =>
+          {
+            if (!allUsers || allUsers.length == 0) return;
+            
+            if (!userId) userId = allUsers[0].id; // if no id is selected choose first user
+
+            this.getUser(userId);
+          });        
       }
     );
   }
 
   getUser(id: number) {
     this.user = this.userService.getUser(id);
-    console.log(this.user);
+    console.log(`User is: ${this.user}`);
   }
 }
