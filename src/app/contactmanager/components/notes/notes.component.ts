@@ -10,12 +10,12 @@ import { Note } from '../../models/note';
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-  
-  @ViewChild(MatPaginator, {static: true}) matPaginator: MatPaginator;
+
+  @ViewChild(MatPaginator, { static: true }) matPaginator: MatPaginator;
 
   displayedColumns: string[] = ['#', 'title', 'date'];
   dataSource: MatTableDataSource<Note>;
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -26,5 +26,9 @@ export class NotesComponent implements OnInit {
   set notes(val: Note[]) {
     this.dataSource = new MatTableDataSource<Note>(val);
     console.log(`notes property set with: ${val}`);
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
