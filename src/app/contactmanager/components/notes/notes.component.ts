@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, NgZone } from '@angular/core';
-
-import { MatTableDataSource } from '@angular/material';
+import { Component, Input } from '@angular/core';
 
 import { Note } from '../../models/note';
 
@@ -9,25 +7,18 @@ import { Note } from '../../models/note';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent {
   
   // @Input() notes: Note[];
 
   displayedColumns: string[] = ['#', 'title', 'date'];
-  dataSource: MatTableDataSource<Note>;
+  dataSource: Note[] = [];
   
-  constructor(private zone: NgZone) { }
+  constructor() { }
 
   @Input()
   set notes(val: Note[]) {
-    this.dataSource = new MatTableDataSource<Note>(val);
+    this.dataSource = val;
     console.log(`notes property set with: ${val}`);
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit() fired on NotesComponent')
-    // // this.zone.run(() => this.dataSource = this.notes);
-    // this.dataSource = new MatTableDataSource<Note>(this.notes);
-    // console.log(`this.datasource: ${this.dataSource}`);
   }
 }
