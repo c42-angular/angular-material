@@ -12,6 +12,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { UserService } from './services/user.service';
+import { NotesComponent } from './components/notes/notes.component';
 
 // notice child routes
 // see in ContactmanagerAppComponent - that has a side-nav that in turn has a router-outlet within it
@@ -25,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ContactmanagerAppComponent, ToolbarComponent, MainContentComponent, SideNavComponent],
+  declarations: [ContactmanagerAppComponent, ToolbarComponent, MainContentComponent, SideNavComponent, NotesComponent],
   imports: [
     CommonModule,
     FormsModule,
