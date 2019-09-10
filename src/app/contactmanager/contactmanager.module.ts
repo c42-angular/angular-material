@@ -13,6 +13,7 @@ import { MainContentComponent } from './components/main-content/main-content.com
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { UserService } from './services/user.service';
 import { NotesComponent } from './components/notes/notes.component';
+import { NewContactDialogComponent } from './new-contact-dialog/new-contact-dialog.component';
 
 // notice child routes
 // see in ContactmanagerAppComponent - that has a side-nav that in turn has a router-outlet within it
@@ -26,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ContactmanagerAppComponent, ToolbarComponent, MainContentComponent, SideNavComponent, NotesComponent],
+  declarations: [ContactmanagerAppComponent, ToolbarComponent, MainContentComponent, SideNavComponent, NotesComponent, NewContactDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -37,6 +38,9 @@ const routes: Routes = [
   ],
   providers: [
     UserService
+  ],
+  entryComponents: [
+    NewContactDialogComponent
   ]
 })
 export class ContactmanagerModule { }
