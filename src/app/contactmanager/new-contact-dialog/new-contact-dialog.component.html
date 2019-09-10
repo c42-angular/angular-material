@@ -4,7 +4,13 @@
     <div class="example-container">
         <mat-form-field>
             <mat-select placeholder="Avatar" [(ngModel)]="user.avatar">
-                <mat-option *ngFor="let avatar of avatars" value="{avatar}">
+                <!-- this element is shown *after* a selection is made and displayed once the drop down collapses -->
+                <mat-select-trigger>
+                    <mat-icon svgIcon="{{user.avatar}}"></mat-icon>
+                    {{user.avatar}}
+                </mat-select-trigger>
+
+                <mat-option *ngFor="let avatar of avatars" [value]="avatar">
                     <mat-icon svgIcon="{{avatar}}"></mat-icon>
                     {{ avatar }}
                 </mat-option>
@@ -12,7 +18,8 @@
         </mat-form-field>        
 
         <mat-form-field>
-          <input matInput placeholder="Name" [(ngModel)]="user.name" required>
+          <input matInput placeholder="Name" [(ngModel)]="user.name" [formControl]="name" required>
+          <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       
         <mat-form-field>
